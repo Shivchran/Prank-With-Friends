@@ -1,5 +1,17 @@
 import { useEffect, useState } from "react";
 
+/* =====================================================
+   API URL
+===================================================== */
+
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "http://localhost:5000";
+
+/* =====================================================
+   PRANK PAGE
+===================================================== */
+
 function PrankPage() {
   const [yourName, setYourName] = useState("");
   const [crushName, setCrushName] = useState("");
@@ -44,7 +56,7 @@ function PrankPage() {
         }
 
         const response = await fetch(
-          `http://localhost:5000/api/submission/check/${encodeURIComponent(
+          `${API_URL}/api/submission/check/${encodeURIComponent(
             slug
           )}`
         );
@@ -63,7 +75,6 @@ function PrankPage() {
 
         // Valid personal prank link
         setStage("form");
-
       } catch (error) {
         console.error(
           "Prank link verification error:",
@@ -95,7 +106,7 @@ function PrankPage() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/submission",
+        `${API_URL}/api/submission`,
         {
           method: "POST",
 
@@ -132,7 +143,6 @@ function PrankPage() {
       }
 
       return true;
-
     } catch (error) {
       console.error(
         "Submission error:",
@@ -145,7 +155,6 @@ function PrankPage() {
       );
 
       return false;
-
     } finally {
       setSubmitting(false);
     }
@@ -388,7 +397,6 @@ function PrankPage() {
               href="/"
               className="create-own-prank-button"
             >
-
               <span>
                 😂
               </span>
@@ -448,9 +456,7 @@ function PrankPage() {
 
             <form
               className="love-form"
-              onSubmit={
-                calculateLove
-              }
+              onSubmit={calculateLove}
             >
 
               {/* YOUR NAME */}
@@ -534,9 +540,7 @@ function PrankPage() {
               <button
                 type="submit"
                 className="love-calculate-button"
-                disabled={
-                  submitting
-                }
+                disabled={submitting}
               >
 
                 {submitting
@@ -625,8 +629,7 @@ function PrankPage() {
               <div
                 className="love-progress-bar"
                 style={{
-                  width:
-                    `${progress}%`,
+                  width: `${progress}%`,
                 }}
               >
               </div>

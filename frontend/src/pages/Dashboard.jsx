@@ -1,10 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+/* =====================================================
+   API URL
+===================================================== */
+
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "http://localhost:5000";
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
 function Dashboard() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
+
   const [stats, setStats] = useState({
     totalSubmissions: 0,
     prankAttempts: 0,
@@ -15,6 +28,10 @@ function Dashboard() {
 
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  /* =====================================================
+     LOAD DASHBOARD
+  ===================================================== */
 
   useEffect(() => {
     async function loadDashboard() {
@@ -27,7 +44,7 @@ function Dashboard() {
 
       try {
         const response = await fetch(
-          "http://localhost:5000/api/dashboard",
+          `${API_URL}/api/dashboard`,
           {
             method: "GET",
 
@@ -58,7 +75,9 @@ function Dashboard() {
           }
         );
 
-        setSubmissions(data.submissions || []);
+        setSubmissions(
+          data.submissions || []
+        );
 
         localStorage.setItem(
           "user",
@@ -66,7 +85,10 @@ function Dashboard() {
         );
 
       } catch (error) {
-        console.error("Dashboard error:", error);
+        console.error(
+          "Dashboard error:",
+          error
+        );
 
         navigate("/login");
 
@@ -78,12 +100,21 @@ function Dashboard() {
     loadDashboard();
   }, [navigate]);
 
+  /* =====================================================
+     COPY PRANK LINK
+  ===================================================== */
+
   function copyPrankLink() {
-    if (!user) return;
+    if (!user) {
+      return;
+    }
 
-    const prankLink = `${window.location.origin}/${user.slug}`;
+    const prankLink =
+      `${window.location.origin}/${user.slug}`;
 
-    navigator.clipboard.writeText(prankLink);
+    navigator.clipboard.writeText(
+      prankLink
+    );
 
     setCopied(true);
 
@@ -92,6 +123,10 @@ function Dashboard() {
     }, 2000);
   }
 
+  /* =====================================================
+     LOGOUT
+  ===================================================== */
+
   function logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -99,19 +134,34 @@ function Dashboard() {
     navigate("/login");
   }
 
-  function formatDate(date) {
-    if (!date) return "";
+  /* =====================================================
+     FORMAT DATE
+  ===================================================== */
 
-    return new Date(date).toLocaleString("en-IN", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    });
+  function formatDate(date) {
+    if (!date) {
+      return "";
+    }
+
+    return new Date(date).toLocaleString(
+      "en-IN",
+      {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }
+    );
   }
+
+  /* =====================================================
+     LOADING
+  ===================================================== */
 
   if (loading) {
     return (
       <div className="dashboard-loading">
-        <h2>Loading Dashboard...</h2>
+        <h2>
+          Loading Dashboard...
+        </h2>
       </div>
     );
   }
@@ -120,7 +170,12 @@ function Dashboard() {
     return null;
   }
 
-  const prankLink = `${window.location.origin}/${user.slug}`;
+  const prankLink =
+    `${window.location.origin}/${user.slug}`;
+
+  /* =====================================================
+     UI
+  ===================================================== */
 
   return (
     <div className="dashboard-page">
@@ -143,12 +198,21 @@ function Dashboard() {
           <div className="dashboard-user">
 
             <div className="dashboard-avatar">
-              {user.name.charAt(0).toUpperCase()}
+              {user.name
+                .charAt(0)
+                .toUpperCase()}
             </div>
 
             <div className="dashboard-user-info">
-              <strong>{user.name}</strong>
-              <small>{user.email}</small>
+
+              <strong>
+                {user.name}
+              </strong>
+
+              <small>
+                {user.email}
+              </small>
+
             </div>
 
             <button
@@ -164,14 +228,13 @@ function Dashboard() {
 
       </nav>
 
-
       {/* =========================
           MAIN CONTENT
       ========================== */}
 
       <main className="dashboard-content">
 
-        {/* Welcome */}
+        {/* WELCOME */}
 
         <section className="dashboard-welcome">
 
@@ -186,13 +249,13 @@ function Dashboard() {
             </h1>
 
             <p>
-              Manage your prank link and see who tried your prank.
+              Manage your prank link and see
+              who tried your prank.
             </p>
 
           </div>
 
         </section>
-
 
         {/* =========================
             PERSONAL LINK
@@ -211,7 +274,8 @@ function Dashboard() {
             </span>
 
             <h2>
-              Share this link with your friends 😈
+              Share this link with your
+              friends 😈
             </h2>
 
             <div className="link-box">
@@ -222,8 +286,12 @@ function Dashboard() {
                 readOnly
               />
 
-              <button onClick={copyPrankLink}>
-                {copied ? "Copied! ✓" : "Copy Link"}
+              <button
+                onClick={copyPrankLink}
+              >
+                {copied
+                  ? "Copied! ✓"
+                  : "Copy Link"}
               </button>
 
             </div>
@@ -231,7 +299,6 @@ function Dashboard() {
           </div>
 
         </section>
-
 
         {/* =========================
             STATISTICS
@@ -259,7 +326,6 @@ function Dashboard() {
 
           </div>
 
-
           <div className="stat-card">
 
             <div className="stat-icon">
@@ -279,7 +345,6 @@ function Dashboard() {
             </div>
 
           </div>
-
 
           <div className="stat-card">
 
@@ -303,7 +368,6 @@ function Dashboard() {
 
         </section>
 
-
         {/* =========================
             RECENT SUBMISSIONS
         ========================== */}
@@ -326,7 +390,6 @@ function Dashboard() {
 
           </div>
 
-
           {submissions.length === 0 ? (
 
             <div className="empty-submissions">
@@ -340,8 +403,9 @@ function Dashboard() {
               </h3>
 
               <p>
-                Share your personal prank link with your friends
-                and wait for the fun to begin!
+                Share your personal prank link
+                with your friends and wait for
+                the fun to begin!
               </p>
 
               <button
@@ -357,40 +421,44 @@ function Dashboard() {
 
             <div className="submissions-list">
 
-              {submissions.map((submission) => (
+              {submissions.map(
+                (submission) => (
 
-                <div
-                  className="submission-item"
-                  key={submission.id}
-                >
+                  <div
+                    className="submission-item"
+                    key={submission.id}
+                  >
 
-                  <div className="submission-icon">
-                    😂
+                    <div className="submission-icon">
+                      😂
+                    </div>
+
+                    <div className="submission-info">
+
+                      <strong>
+                        {submission.yourName}
+                        {" ❤️ "}
+                        {submission.crushName}
+                      </strong>
+
+                      <span>
+                        Love Calculator
+                      </span>
+
+                    </div>
+
+                    <div className="submission-date">
+
+                      {formatDate(
+                        submission.createdAt
+                      )}
+
+                    </div>
+
                   </div>
 
-                  <div className="submission-info">
-
-                    <strong>
-                      {submission.yourName}
-                      {" ❤️ "}
-                      {submission.crushName}
-                    </strong>
-
-                    <span>
-                      Love Calculator
-                    </span>
-
-                  </div>
-
-                  <div className="submission-date">
-                    {formatDate(
-                      submission.createdAt
-                    )}
-                  </div>
-
-                </div>
-
-              ))}
+                )
+              )}
 
             </div>
 

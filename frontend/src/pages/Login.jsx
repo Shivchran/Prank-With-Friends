@@ -1,6 +1,18 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+/* =====================================================
+   API URL
+===================================================== */
+
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "http://localhost:5000";
+
+/* =====================================================
+   LOGIN PAGE
+===================================================== */
+
 function Login() {
   const navigate = useNavigate();
 
@@ -13,6 +25,10 @@ function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  /* =====================================================
+     INPUT CHANGE
+  ===================================================== */
+
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -20,7 +36,14 @@ function Login() {
       ...previous,
       [name]: value,
     }));
+
+    setError("");
+    setMessage("");
   }
+
+  /* =====================================================
+     LOGIN
+  ===================================================== */
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -29,7 +52,9 @@ function Login() {
     setError("");
 
     if (!formData.email || !formData.password) {
-      setError("Please enter your email and password.");
+      setError(
+        "Please enter your email and password."
+      );
       return;
     }
 
@@ -37,7 +62,7 @@ function Login() {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/login",
+        `${API_URL}/api/auth/login`,
         {
           method: "POST",
 
@@ -55,41 +80,56 @@ function Login() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.message || "Login failed.");
+        setError(
+          data.message || "Login failed."
+        );
         return;
       }
 
-      /*
-        Save login information
-      */
+      /* =================================================
+         SAVE LOGIN INFORMATION
+      ================================================= */
 
-      localStorage.setItem("token", data.token);
+      localStorage.setItem(
+        "token",
+        data.token
+      );
 
       localStorage.setItem(
         "user",
         JSON.stringify(data.user)
       );
 
-      setMessage("Login successful! 🎉");
+      setMessage(
+        "Login successful! 🎉"
+      );
 
-      /*
-        Go to dashboard
-      */
+      /* =================================================
+         GO TO DASHBOARD
+      ================================================= */
 
       setTimeout(() => {
         navigate("/dashboard");
       }, 800);
 
     } catch (error) {
-      console.error("Login error:", error);
+      console.error(
+        "Login error:",
+        error
+      );
 
       setError(
         "Unable to connect to the server. Please try again."
       );
+
     } finally {
       setLoading(false);
     }
   }
+
+  /* =====================================================
+     UI
+  ===================================================== */
 
   return (
     <div className="auth-page">
@@ -122,7 +162,6 @@ function Login() {
 
       </nav>
 
-
       {/* =========================
           LOGIN CONTENT
       ========================== */}
@@ -131,7 +170,7 @@ function Login() {
 
         <section className="login-card">
 
-          {/* Header */}
+          {/* HEADER */}
 
           <div className="login-header">
 
@@ -149,7 +188,6 @@ function Login() {
 
           </div>
 
-
           {/* =========================
               LOGIN FORM
           ========================== */}
@@ -159,7 +197,7 @@ function Login() {
             onSubmit={handleSubmit}
           >
 
-            {/* Email */}
+            {/* EMAIL */}
 
             <div className="input-group">
 
@@ -187,8 +225,7 @@ function Login() {
 
             </div>
 
-
-            {/* Password */}
+            {/* PASSWORD */}
 
             <div className="input-group">
 
@@ -216,8 +253,7 @@ function Login() {
 
             </div>
 
-
-            {/* Forgot Password */}
+            {/* FORGOT PASSWORD */}
 
             <div className="forgot-row">
 
@@ -230,8 +266,7 @@ function Login() {
 
             </div>
 
-
-            {/* Error */}
+            {/* ERROR */}
 
             {error && (
               <div className="form-message error-message">
@@ -239,8 +274,7 @@ function Login() {
               </div>
             )}
 
-
-            {/* Success */}
+            {/* SUCCESS */}
 
             {message && (
               <div className="form-message success-message">
@@ -248,8 +282,7 @@ function Login() {
               </div>
             )}
 
-
-            {/* Login */}
+            {/* LOGIN BUTTON */}
 
             <button
               type="submit"
@@ -272,8 +305,7 @@ function Login() {
 
           </form>
 
-
-          {/* Signup */}
+          {/* SIGNUP */}
 
           <div className="login-bottom">
 
@@ -287,8 +319,7 @@ function Login() {
 
           </div>
 
-
-          {/* Security */}
+          {/* SECURITY */}
 
           <div className="signup-footer">
 

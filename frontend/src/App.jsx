@@ -12,6 +12,13 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import PrankPage from "./pages/PrankPage";
 
+/* =====================================================
+   API URL
+===================================================== */
+
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "http://localhost:5000";
 
 /* =====================================================
    HOME PAGE
@@ -31,7 +38,6 @@ function Home() {
   const [prankLink, setPrankLink] = useState("");
   const [loading, setLoading] = useState(false);
 
-
   /* =====================================================
      INPUT CHANGE
   ===================================================== */
@@ -47,7 +53,6 @@ function Home() {
     setError("");
     setSuccess("");
   }
-
 
   /* =====================================================
      SIGNUP
@@ -92,7 +97,7 @@ function Home() {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/signup",
+        `${API_URL}/api/auth/signup`,
         {
           method: "POST",
 
@@ -113,7 +118,7 @@ function Home() {
       if (!response.ok) {
         setError(
           data.message ||
-          "Unable to create your account."
+            "Unable to create your account."
         );
 
         return;
@@ -135,7 +140,6 @@ function Home() {
         email: "",
         password: "",
       });
-
     } catch (error) {
       console.error(
         "Signup error:",
@@ -143,14 +147,12 @@ function Home() {
       );
 
       setError(
-        "Unable to connect to the server. Please make sure the backend is running."
+        "Unable to connect to the server. Please try again."
       );
-
     } finally {
       setLoading(false);
     }
   }
-
 
   /* =====================================================
      COPY PRANK LINK
@@ -169,7 +171,6 @@ function Home() {
       setSuccess(
         "Prank link copied! 🔗"
       );
-
     } catch (error) {
       console.error(
         "Copy failed:",
@@ -181,7 +182,6 @@ function Home() {
       );
     }
   }
-
 
   /* =====================================================
      HOME UI
@@ -210,7 +210,6 @@ function Home() {
         </div>
 
       </nav>
-
 
       {/* HERO */}
 
@@ -258,7 +257,6 @@ function Home() {
 
               </div>
 
-
               <div className="feature">
 
                 <span>😂</span>
@@ -274,7 +272,6 @@ function Home() {
                 </div>
 
               </div>
-
 
               <div className="feature">
 
@@ -296,7 +293,6 @@ function Home() {
 
           </section>
 
-
           {/* SIGNUP CARD */}
 
           <section className="signup-card">
@@ -316,7 +312,6 @@ function Home() {
               </p>
 
             </div>
-
 
             {/* SIGNUP FORM */}
 
@@ -351,7 +346,6 @@ function Home() {
 
               </div>
 
-
               {/* EMAIL */}
 
               <div className="input-group">
@@ -377,7 +371,6 @@ function Home() {
                 </div>
 
               </div>
-
 
               {/* PASSWORD */}
 
@@ -405,7 +398,6 @@ function Home() {
 
               </div>
 
-
               {/* ERROR */}
 
               {error && (
@@ -414,7 +406,6 @@ function Home() {
                 </div>
               )}
 
-
               {/* SUCCESS */}
 
               {success && (
@@ -422,7 +413,6 @@ function Home() {
                   ✅ {success}
                 </div>
               )}
-
 
               {/* GENERATED LINK */}
 
@@ -450,7 +440,6 @@ function Home() {
 
                   </div>
 
-
                   <div className="generated-link-actions">
 
                     <button
@@ -465,7 +454,6 @@ function Home() {
                       🔗 Open Prank
                     </button>
 
-
                     <button
                       type="button"
                       onClick={() => {
@@ -479,7 +467,6 @@ function Home() {
 
                 </div>
               )}
-
 
               {/* CREATE BUTTON */}
 
@@ -504,7 +491,6 @@ function Home() {
 
             </form>
 
-
             {/* SECURITY */}
 
             <div className="signup-footer">
@@ -520,7 +506,6 @@ function Home() {
         </div>
 
       </main>
-
 
       {/* FOOTER */}
 
@@ -550,13 +535,11 @@ function Home() {
   );
 }
 
-
 /* =====================================================
    APP ROUTES
 ===================================================== */
 
 function App() {
-
   return (
     <Routes>
 
@@ -567,7 +550,6 @@ function App() {
         element={<Home />}
       />
 
-
       {/* LOGIN */}
 
       <Route
@@ -575,14 +557,12 @@ function App() {
         element={<Login />}
       />
 
-
       {/* DASHBOARD */}
 
       <Route
         path="/dashboard"
         element={<Dashboard />}
       />
-
 
       {/* PERSONAL LOVE CALCULATOR */}
 
@@ -594,6 +574,5 @@ function App() {
     </Routes>
   );
 }
-
 
 export default App;
