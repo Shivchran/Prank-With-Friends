@@ -6,6 +6,10 @@ const User = require("../models/User");
 
 const router = express.Router();
 
+// ========================================
+// CREATE SLUG
+// ========================================
+
 function createSlug(name) {
   return name
     .toLowerCase()
@@ -13,6 +17,10 @@ function createSlug(name) {
     .replace(/[^a-z0-9]+/g, "")
     .substring(0, 30);
 }
+
+// ========================================
+// GENERATE UNIQUE SLUG
+// ========================================
 
 async function generateUniqueSlug(name) {
   const baseSlug = createSlug(name) || "user";
@@ -28,7 +36,6 @@ async function generateUniqueSlug(name) {
   return slug;
 }
 
-
 /* =====================================================
    SIGNUP
 ===================================================== */
@@ -37,26 +44,37 @@ router.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    // ========================================
+    // VALIDATION
+    // ========================================
+
     if (!name || !email || !password) {
       return res.status(400).json({
         success: false,
-        message: "Name, email and password are required.",
+        message:
+          "Name, email and password are required.",
       });
     }
 
     if (name.trim().length < 2) {
       return res.status(400).json({
         success: false,
-        message: "Name must contain at least 2 characters.",
+        message:
+          "Name must contain at least 2 characters.",
       });
     }
 
     if (password.length < 6) {
       return res.status(400).json({
         success: false,
-        message: "Password must contain at least 6 characters.",
+        message:
+          "Password must contain at least 6 characters.",
       });
     }
+
+    // ========================================
+    // CHECK EXISTING USER
+    // ========================================
 
     const existingUser = await User.findOne({
       email: email.toLowerCase().trim(),
@@ -65,13 +83,29 @@ router.post("/signup", async (req, res) => {
     if (existingUser) {
       return res.status(409).json({
         success: false,
-        message: "An account with this email already exists.",
+        message:
+          "An account with this email already exists.",
       });
     }
 
-    const passwordHash = await bcrypt.hash(password, 12);
+    // ========================================
+    // HASH PASSWORD
+    // ========================================
+
+    const passwordHash = await bcrypt.hash(
+      password,
+      12
+    );
+
+    // ========================================
+    // CREATE UNIQUE SLUG
+    // ========================================
 
     const slug = await generateUniqueSlug(name);
+
+    // ========================================
+    // CREATE USER
+    // ========================================
 
     const user = await User.create({
       name: name.trim(),
@@ -80,30 +114,44 @@ router.post("/signup", async (req, res) => {
       slug,
     });
 
-    const prankLink = `http://localhost:5173/${user.slug}`;
+    // ========================================
+    // PRODUCTION PRANK LINK
+    // ========================================
+
+    const prankLink =
+      `https://soulmatecheck.universalkhabar.com/${user.slug}`;
+
+    // ========================================
+    // RESPONSE
+    // ========================================
 
     return res.status(201).json({
       success: true,
       message: "Account created successfully!",
+
       user: {
         id: user._id,
         name: user.name,
         email: user.email,
         slug: user.slug,
       },
+
       prankLink,
     });
 
   } catch (error) {
-    console.error("Signup error:", error);
+    console.error(
+      "Signup error:",
+      error
+    );
 
     return res.status(500).json({
       success: false,
-      message: "Something went wrong while creating your account.",
+      message:
+        "Something went wrong while creating your account.",
     });
   }
 });
-
 
 /* =====================================================
    LOGIN
@@ -113,17 +161,21 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    /* Check input */
+    // ========================================
+    // CHECK INPUT
+    // ========================================
 
     if (!email || !password) {
       return res.status(400).json({
         success: false,
-        message: "Email and password are required.",
+        message:
+          "Email and password are required.",
       });
     }
 
-
-    /* Find user */
+    // ========================================
+    // FIND USER
+    // ========================================
 
     const user = await User.findOne({
       email: email.toLowerCase().trim(),
@@ -132,45 +184,55 @@ router.post("/login", async (req, res) => {
     if (!user) {
       return res.status(401).json({
         success: false,
-        message: "Invalid email or password.",
+        message:
+          "Invalid email or password.",
       });
     }
 
+    // ========================================
+    // CHECK PASSWORD
+    // ========================================
 
-    /* Check password */
-
-    const passwordMatch = await bcrypt.compare(
-      password,
-      user.passwordHash
-    );
+    const passwordMatch =
+      await bcrypt.compare(
+        password,
+        user.passwordHash
+      );
 
     if (!passwordMatch) {
       return res.status(401).json({
         success: false,
-        message: "Invalid email or password.",
+        message:
+          "Invalid email or password.",
       });
     }
 
-
-    /* Create JWT */
+    // ========================================
+    // CREATE JWT
+    // ========================================
 
     const token = jwt.sign(
       {
         userId: user._id.toString(),
       },
+
       process.env.JWT_SECRET,
+
       {
         expiresIn: "7d",
       }
     );
 
-
-    /* Success */
+    // ========================================
+    // SUCCESS
+    // ========================================
 
     return res.json({
       success: true,
       message: "Login successful!",
+
       token,
+
       user: {
         id: user._id,
         name: user.name,
@@ -180,14 +242,17 @@ router.post("/login", async (req, res) => {
     });
 
   } catch (error) {
-    console.error("Login error:", error);
+    console.error(
+      "Login error:",
+      error
+    );
 
     return res.status(500).json({
       success: false,
-      message: "Something went wrong while logging in.",
+      message:
+        "Something went wrong while logging in.",
     });
   }
 });
-
 
 module.exports = router;

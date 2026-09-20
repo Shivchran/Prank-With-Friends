@@ -27,13 +27,14 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   "http://localhost:5173",
   "https://prank-with-friends-frontend.onrender.com",
+  "https://soulmatecheck.universalkhabar.com",
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Allow requests such as Postman or
-      // server-to-server requests without an origin
+      // Allow requests without an origin
+      // such as Postman or server-to-server requests
       if (!origin) {
         return callback(null, true);
       }
