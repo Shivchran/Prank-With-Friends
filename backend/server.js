@@ -21,15 +21,41 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // ========================================
-// MIDDLEWARE
+// CORS
 // ========================================
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://prank-with-friends-frontend.onrender.com",
+];
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: function (origin, callback) {
+      // Allow requests such as Postman or
+      // server-to-server requests without an origin
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      console.log("❌ CORS blocked:", origin);
+
+      return callback(
+        new Error("Not allowed by CORS")
+      );
+    },
+
     credentials: true,
   })
 );
+
+// ========================================
+// BODY PARSER
+// ========================================
 
 app.use(express.json());
 
@@ -40,18 +66,25 @@ app.use(express.json());
 async function connectDatabase() {
   try {
     if (!process.env.MONGO_URI) {
-      console.error("❌ MONGO_URI is missing from .env");
+      console.error(
+        "❌ MONGO_URI is missing from .env"
+      );
+
       process.exit(1);
     }
 
     await mongoose.connect(process.env.MONGO_URI);
 
     console.log("=================================");
-    console.log("MongoDB connected successfully ✅");
+    console.log(
+      "MongoDB connected successfully ✅"
+    );
     console.log("=================================");
   } catch (error) {
     console.error("=================================");
-    console.error("MongoDB connection failed ❌");
+    console.error(
+      "MongoDB connection failed ❌"
+    );
     console.error(error.message);
     console.error("=================================");
 
@@ -66,7 +99,8 @@ async function connectDatabase() {
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: "Prank With Friends backend is running 🚀",
+    message:
+      "Prank With Friends backend is running 🚀",
   });
 });
 
@@ -123,10 +157,13 @@ async function startServer() {
 
   app.listen(PORT, () => {
     console.log("=================================");
-    console.log("😂 Prank With Friends Backend");
+    console.log(
+      "😂 Prank With Friends Backend"
+    );
     console.log("=================================");
-    console.log(`Server running on: http://localhost:${PORT}`);
-    console.log(`Health check: http://localhost:${PORT}/api/health`);
+    console.log(
+      `Server running on port: ${PORT}`
+    );
     console.log("=================================");
   });
 }
