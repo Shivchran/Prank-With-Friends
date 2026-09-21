@@ -324,15 +324,15 @@ function PrankPage() {
             </div>
 
             <div className="love-badge">
-              VERIFYING LINK
+              ONE MOMENT
             </div>
 
             <h2>
-              Checking Prank Link...
+              Just a moment...
             </h2>
 
             <p className="loading-names">
-              Please wait...
+              Preparing something special for you...
             </p>
 
           </section>
@@ -449,11 +449,21 @@ function PrankPage() {
             <div className="love-top-icon">
               ❤️
             </div>
+            <div className="love-badge love-calculator-title">
 
-            <div className="love-badge">
-              💕 LOVE CALCULATOR 💕
-            </div>
+            <span className="title-heart title-heart-left">
+             💕
+           </span>
 
+           <span className="title-text">
+           <span>LOVE</span>
+           <span>CALCULATOR</span>
+           </span>
+
+           <span className="title-heart title-heart-right">
+            💕
+           </span>
+           </div>
             <form
               className="love-form"
               onSubmit={calculateLove}

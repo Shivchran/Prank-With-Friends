@@ -20,7 +20,6 @@ body,
 
 body {
   margin: 0;
-
   min-height: 100vh;
 
   font-family:
@@ -32,7 +31,6 @@ body {
     sans-serif;
 
   background: #f7f7fb;
-
   color: #171717;
 }
 
@@ -43,6 +41,10 @@ input {
 
 button {
   cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 a {
@@ -56,11 +58,9 @@ a {
 
 .app {
   position: relative;
-
   min-height: 100vh;
 
   display: flex;
-
   flex-direction: column;
 }
 
@@ -76,7 +76,6 @@ a {
   left: 0;
 
   width: 100%;
-
   z-index: 20;
 
   padding: 20px 0;
@@ -88,9 +87,7 @@ a {
   margin: 0 auto;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 }
 
@@ -98,13 +95,10 @@ a {
   color: white;
 
   font-size: 21px;
-
   font-weight: 800;
 
   display: flex;
-
   align-items: center;
-
   gap: 8px;
 }
 
@@ -116,7 +110,6 @@ a {
   display: inline-flex;
 
   align-items: center;
-
   justify-content: center;
 
   padding: 11px 22px;
@@ -130,7 +123,6 @@ a {
   color: white;
 
   font-size: 14px;
-
   font-weight: 700;
 
   backdrop-filter: blur(10px);
@@ -142,7 +134,6 @@ a {
 
 .login-button:hover {
   background: rgba(255, 255, 255, 0.22);
-
   transform: translateY(-1px);
 }
 
@@ -157,15 +148,12 @@ a {
   min-height: 100vh;
 
   display: flex;
-
   align-items: center;
 
   background-image: url("/images/signupbg.png");
 
   background-size: cover;
-
   background-position: center;
-
   background-repeat: no-repeat;
 
   overflow: hidden;
@@ -178,7 +166,6 @@ a {
 
 .hero-overlay {
   position: absolute;
-
   inset: 0;
 
   background: rgba(0, 0, 0, 0.35);
@@ -193,7 +180,6 @@ a {
 
 .hero-content {
   position: relative;
-
   z-index: 2;
 
   width: min(1200px, calc(100% - 40px));
@@ -236,7 +222,6 @@ a {
   backdrop-filter: blur(8px);
 
   font-size: 11px;
-
   font-weight: 800;
 
   letter-spacing: 1px;
@@ -258,7 +243,6 @@ a {
 
 .hero-text h1 span {
   display: inline;
-
   color: #ff75aa;
 }
 
@@ -268,7 +252,6 @@ a {
   color: rgba(255, 255, 255, 0.8);
 
   font-size: 17px;
-
   line-height: 1.7;
 
   margin-bottom: 35px;
@@ -297,7 +280,6 @@ a {
 
 .feature > span {
   width: 44px;
-
   height: 44px;
 
   flex-shrink: 0;
@@ -305,7 +287,6 @@ a {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   border-radius: 12px;
@@ -327,13 +308,11 @@ a {
 
 .feature strong {
   color: white;
-
   font-size: 14px;
 }
 
 .feature small {
   color: rgba(255, 255, 255, 0.62);
-
   font-size: 12px;
 }
 
@@ -359,13 +338,11 @@ a {
 
 .signup-header {
   text-align: center;
-
   margin-bottom: 25px;
 }
 
 .signup-icon {
   width: 58px;
-
   height: 58px;
 
   margin: 0 auto 14px;
@@ -373,7 +350,6 @@ a {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   border-radius: 17px;
@@ -385,13 +361,11 @@ a {
 
 .signup-header h2 {
   font-size: 27px;
-
   margin-bottom: 7px;
 }
 
 .signup-header p {
   color: #777;
-
   font-size: 13px;
 }
 
@@ -421,7 +395,6 @@ a {
   color: #333;
 
   font-size: 13px;
-
   font-weight: 700;
 }
 
@@ -456,23 +429,19 @@ a {
 
 .input-wrapper > span {
   font-size: 17px;
-
   flex-shrink: 0;
 }
 
 .input-wrapper input {
   width: 100%;
-
   height: 100%;
 
   border: none;
-
   outline: none;
 
   background: transparent;
 
   color: #222;
-
   font-size: 14px;
 }
 
@@ -495,7 +464,6 @@ a {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 12px;
@@ -514,7 +482,6 @@ a {
   color: white;
 
   font-size: 14px;
-
   font-weight: 800;
 
   box-shadow:
@@ -534,9 +501,7 @@ a {
 
 .create-button:disabled {
   opacity: 0.65;
-
   cursor: not-allowed;
-
   transform: none;
 }
 
@@ -549,7 +514,6 @@ a {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 7px;
@@ -570,7 +534,6 @@ a {
   position: absolute;
 
   bottom: 0;
-
   left: 0;
 
   width: 100%;
@@ -591,7 +554,6 @@ a {
   color: rgba(255, 255, 255, 0.8);
 
   font-size: 11px;
-
   line-height: 1.8;
 
   backdrop-filter: blur(8px);
@@ -615,7 +577,6 @@ a {
 
 .footer a:hover {
   color: #ffffff;
-
   text-decoration: underline;
 }
 
@@ -632,11 +593,9 @@ a {
   background-image: url("/images/signupbg.png");
 
   background-size: cover;
-
   background-position: center;
 
   display: flex;
-
   flex-direction: column;
 
   overflow: hidden;
@@ -644,7 +603,6 @@ a {
 
 .auth-overlay {
   position: absolute;
-
   inset: 0;
 
   background:
@@ -657,13 +615,11 @@ a {
 
 .auth-page .navbar {
   position: relative;
-
   z-index: 10;
 }
 
 .auth-content {
   position: relative;
-
   z-index: 5;
 
   flex: 1;
@@ -671,7 +627,6 @@ a {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   padding: 110px 20px 50px;
@@ -681,7 +636,6 @@ a {
   display: inline-flex;
 
   align-items: center;
-
   justify-content: center;
 
   padding: 10px 18px;
@@ -695,7 +649,6 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.25);
 
   font-size: 13px;
-
   font-weight: 700;
 
   backdrop-filter: blur(8px);
@@ -733,7 +686,6 @@ a {
 
 .login-icon {
   width: 62px;
-
   height: 62px;
 
   margin: 0 auto 15px;
@@ -741,7 +693,6 @@ a {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   border-radius: 18px;
@@ -753,13 +704,11 @@ a {
 
 .login-header h1 {
   font-size: 29px;
-
   margin-bottom: 7px;
 }
 
 .login-header p {
   color: #777;
-
   font-size: 13px;
 }
 
@@ -784,7 +733,6 @@ a {
   color: #e62d72;
 
   font-size: 12px;
-
   font-weight: 700;
 
   padding: 0;
@@ -805,7 +753,6 @@ a {
   border-radius: 9px;
 
   font-size: 12px;
-
   font-weight: 600;
 
   line-height: 1.4;
@@ -836,7 +783,6 @@ a {
   display: flex;
 
   justify-content: center;
-
   align-items: center;
 
   gap: 5px;
@@ -850,7 +796,6 @@ a {
 
 .login-bottom a {
   color: #e62d72;
-
   font-weight: 700;
 }
 
@@ -867,7 +812,6 @@ a {
   min-height: 100vh;
 
   display: flex;
-
   flex-direction: column;
 
   background: #f7f7fb;
@@ -920,7 +864,6 @@ a {
   color: #171717;
 
   font-size: 21px;
-
   font-weight: 800;
 }
 
@@ -934,7 +877,6 @@ a {
 
 .dashboard-avatar {
   width: 42px;
-
   height: 42px;
 
   flex-shrink: 0;
@@ -942,7 +884,6 @@ a {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   border-radius: 50%;
@@ -957,7 +898,6 @@ a {
   color: white;
 
   font-size: 17px;
-
   font-weight: 800;
 }
 
@@ -975,7 +915,6 @@ a {
 
 .dashboard-user-info small {
   color: #888;
-
   font-size: 11px;
 }
 
@@ -991,7 +930,6 @@ a {
   color: #333;
 
   font-size: 12px;
-
   font-weight: 700;
 
   transition: 0.2s;
@@ -1055,7 +993,6 @@ a {
 
 .dashboard-welcome p {
   color: #777;
-
   font-size: 15px;
 }
 
@@ -1092,7 +1029,6 @@ a {
 
 .prank-link-icon {
   width: 65px;
-
   height: 65px;
 
   flex-shrink: 0;
@@ -1100,7 +1036,6 @@ a {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   border-radius: 18px;
@@ -1112,7 +1047,6 @@ a {
 
 .prank-link-content {
   flex: 1;
-
   min-width: 0;
 }
 
@@ -1134,7 +1068,6 @@ a {
 
 .link-box {
   display: flex;
-
   gap: 10px;
 }
 
@@ -1146,7 +1079,6 @@ a {
   height: 45px;
 
   border: none;
-
   outline: none;
 
   padding: 0 14px;
@@ -1174,7 +1106,6 @@ a {
   color: white;
 
   font-size: 12px;
-
   font-weight: 700;
 
   transition: 0.2s;
@@ -1221,7 +1152,6 @@ a {
 
 .stat-icon {
   width: 52px;
-
   height: 52px;
 
   flex-shrink: 0;
@@ -1229,7 +1159,6 @@ a {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   border-radius: 14px;
@@ -1341,7 +1270,6 @@ a {
 
 .dashboard-share-button:hover {
   transform: translateY(-1px);
-
   opacity: 0.9;
 }
 
@@ -1387,7 +1315,6 @@ a {
 
   .hero-text p {
     margin-left: auto;
-
     margin-right: auto;
   }
 
@@ -1417,10 +1344,6 @@ a {
 
 @media (max-width: 600px) {
 
-  /* =================================================
-     NAVBAR
-  ================================================= */
-
   .navbar {
     padding: 15px 0;
   }
@@ -1440,9 +1363,7 @@ a {
   }
 
 
-  /* =================================================
-     HERO
-  ================================================= */
+  /* HERO */
 
   .hero {
     min-height: 100vh;
@@ -1473,9 +1394,7 @@ a {
   }
 
 
-  /* =================================================
-     FEATURES
-  ================================================= */
+  /* FEATURES */
 
   .features {
     gap: 14px;
@@ -1487,7 +1406,6 @@ a {
 
   .feature > span {
     width: 40px;
-
     height: 40px;
 
     font-size: 18px;
@@ -1502,9 +1420,7 @@ a {
   }
 
 
-  /* =================================================
-     SIGNUP CARD
-  ================================================= */
+  /* SIGNUP */
 
   .signup-card {
     padding: 25px 20px;
@@ -1521,15 +1437,12 @@ a {
   }
 
 
-  /* =================================================
-     HOME FOOTER
-  ================================================= */
+  /* HOME FOOTER */
 
   .footer {
     position: absolute;
 
     bottom: 0;
-
     left: 0;
 
     padding: 12px 15px;
@@ -1540,9 +1453,7 @@ a {
   }
 
 
-  /* =================================================
-     LOGIN
-  ================================================= */
+  /* LOGIN */
 
   .auth-content {
     padding: 100px 14px 35px;
@@ -1565,9 +1476,7 @@ a {
   }
 
 
-  /* =================================================
-     DASHBOARD NAVBAR
-  ================================================= */
+  /* DASHBOARD NAVBAR */
 
   .dashboard-navbar-container {
     width: calc(100% - 24px);
@@ -1590,9 +1499,7 @@ a {
   }
 
 
-  /* =================================================
-     DASHBOARD CONTENT
-  ================================================= */
+  /* DASHBOARD CONTENT */
 
   .dashboard-content {
     width: calc(100% - 24px);
@@ -1611,9 +1518,7 @@ a {
   }
 
 
-  /* =================================================
-     PERSONAL LINK
-  ================================================= */
+  /* PERSONAL LINK */
 
   .prank-link-card {
     flex-direction: column;
@@ -1642,18 +1547,14 @@ a {
   }
 
 
-  /* =================================================
-     STATS
-  ================================================= */
+  /* STATS */
 
   .stat-card {
     padding: 20px;
   }
 
 
-  /* =================================================
-     SUBMISSIONS
-  ================================================= */
+  /* SUBMISSIONS */
 
   .submissions-card {
     padding: 20px;
@@ -1664,14 +1565,14 @@ a {
   }
 
 
-  /* =================================================
-     DASHBOARD FOOTER
-  ================================================= */
+  /* DASHBOARD FOOTER */
 
   .dashboard-footer {
     padding: 20px 15px;
   }
 }
+
+
 /* =====================================================
    GENERATED PRANK LINK
 ===================================================== */
@@ -1806,11 +1707,8 @@ a {
   .generated-link-actions {
     flex-direction: column;
   }
-
 }
-/* =====================================================
-   LOVE CALCULATOR PAGE
-===================================================== */
+
 
 /* =====================================================
    LOVE CALCULATOR PAGE
@@ -1820,15 +1718,20 @@ a {
   position: relative;
 
   width: 100%;
+
   min-height: 100vh;
+  min-height: 100dvh;
 
   display: flex;
+
+  flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
-  padding: 40px 20px;
+  padding: 40px 20px 70px;
 
-  overflow: hidden;
+  overflow-x: hidden;
 
   background-image: url("/images/lovecalculatorbg.png");
 
@@ -1893,6 +1796,8 @@ a {
   text-align: left;
 
   animation: loveCardAppear 0.5s ease;
+
+  overflow: hidden;
 }
 
 
@@ -1907,7 +1812,6 @@ a {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
 
 
@@ -1920,6 +1824,7 @@ a {
   height: 58px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -1948,12 +1853,11 @@ a {
   50% {
     transform: scale(1.08);
   }
-
 }
 
 
 /* =====================================================
-   BADGE
+   DEFAULT BADGE
 ===================================================== */
 
 .love-badge {
@@ -1980,6 +1884,105 @@ a {
 
 
 /* =====================================================
+   LOVE CALCULATOR TITLE
+===================================================== */
+
+.love-calculator-title {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 70px;
+
+  margin: 0 0 18px;
+
+  padding: 9px 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 40px;
+
+  background: #fff0f5;
+
+  overflow: hidden;
+
+  letter-spacing: 0;
+}
+
+
+/* =====================================================
+   TITLE TEXT
+===================================================== */
+
+.love-calculator-title .title-text {
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  color: #e62d72;
+
+  font-size: clamp(20px, 5vw, 28px);
+
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   TITLE HEARTS
+===================================================== */
+
+.love-calculator-title .title-heart {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 32px;
+
+  height: 32px;
+
+  font-size: 23px;
+
+  line-height: 1;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+.love-calculator-title .title-heart-left {
+  left: 12px;
+}
+
+.love-calculator-title .title-heart-right {
+  right: 12px;
+}
+
+
+/* =====================================================
    TITLE
 ===================================================== */
 
@@ -1998,7 +2001,6 @@ a {
 
   text-align: center;
 }
-
 
 .love-card h1 span {
   display: inline;
@@ -2031,11 +2033,12 @@ a {
 ===================================================== */
 
 .love-input-group {
+  width: 100%;
+
   margin-bottom: 17px;
 
   text-align: left;
 }
-
 
 .love-input-group label {
   display: block;
@@ -2055,6 +2058,8 @@ a {
 ===================================================== */
 
 .love-input-wrapper {
+  width: 100%;
+
   height: 48px;
 
   display: flex;
@@ -2074,8 +2079,9 @@ a {
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
-}
 
+  overflow: hidden;
+}
 
 .love-input-wrapper:focus-within {
   border-color: #ff4b7d;
@@ -2084,16 +2090,16 @@ a {
     0 0 0 3px rgba(255, 75, 125, 0.12);
 }
 
-
 .love-input-wrapper span {
   flex-shrink: 0;
 
   font-size: 17px;
 }
 
-
 .love-input-wrapper input {
   width: 100%;
+
+  min-width: 0;
 
   height: 100%;
 
@@ -2108,7 +2114,6 @@ a {
   font-size: 14px;
 }
 
-
 .love-input-wrapper input::placeholder {
   color: #888;
 }
@@ -2119,7 +2124,9 @@ a {
 ===================================================== */
 
 .love-middle-heart {
-  height: 20px;
+  width: 100%;
+
+  height: 24px;
 
   display: flex;
 
@@ -2127,9 +2134,13 @@ a {
 
   justify-content: center;
 
+  text-align: center;
+
   color: #ff4b7d;
 
-  font-size: 18px;
+  font-size: 20px;
+
+  line-height: 1;
 
   animation: loveBeat 1.2s infinite;
 }
@@ -2142,9 +2153,11 @@ a {
 .love-calculate-button {
   width: 100%;
 
-  height: 51px;
+  min-height: 51px;
 
   margin-top: 7px;
+
+  padding: 0 15px;
 
   display: flex;
 
@@ -2175,8 +2188,7 @@ a {
     box-shadow 0.2s ease;
 }
 
-
-.love-calculate-button:hover {
+.love-calculate-button:hover:not(:disabled) {
   background: #ff386f;
 
   transform: translateY(-2px);
@@ -2185,9 +2197,12 @@ a {
     0 12px 25px rgba(255, 75, 125, 0.35);
 }
 
-
-.love-calculate-button:active {
+.love-calculate-button:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.love-calculate-button:disabled {
+  opacity: 0.7;
 }
 
 
@@ -2201,6 +2216,8 @@ a {
   color: #999;
 
   font-size: 9px;
+
+  line-height: 1.5;
 
   text-align: center;
 }
@@ -2224,22 +2241,80 @@ a {
   animation: loveBeat 0.8s infinite;
 }
 
-
 .loading-card h2 {
   margin: 15px 0 8px;
 
   color: #222;
 
   font-size: 27px;
-}
 
+  line-height: 1.2;
+}
 
 .loading-names {
   color: #777;
 
   font-size: 13px;
+
+  line-height: 1.6;
 }
 
+
+/* =====================================================
+   INITIAL LOADING DOTS
+===================================================== */
+
+.loading-dots {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 20px;
+}
+
+.loading-dots span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #ff3c83;
+
+  animation: loadingDot 1.2s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes loadingDot {
+
+  0%,
+  80%,
+  100% {
+    opacity: 0.3;
+
+    transform: scale(0.8);
+  }
+
+  40% {
+    opacity: 1;
+
+    transform: scale(1.15);
+  }
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
 
 .love-progress {
   width: 100%;
@@ -2254,7 +2329,6 @@ a {
 
   background: #eeeeee;
 }
-
 
 .love-progress-bar {
   height: 100%;
@@ -2271,7 +2345,6 @@ a {
   transition: width 0.12s linear;
 }
 
-
 .love-progress-number {
   margin-top: 12px;
 
@@ -2282,13 +2355,14 @@ a {
   font-weight: 900;
 }
 
-
 .calculation-status {
   margin-top: 10px;
 
   color: #777;
 
   font-size: 11px;
+
+  line-height: 1.5;
 }
 
 
@@ -2308,7 +2382,6 @@ a {
   text-align: center;
 }
 
-
 .result-heart {
   margin: 10px 0;
 
@@ -2318,7 +2391,6 @@ a {
 
   animation: loveBeat 1s infinite;
 }
-
 
 .result-card h2 {
   margin: 8px 0;
@@ -2330,12 +2402,10 @@ a {
   text-align: center;
 }
 
-
 .result-names {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 10px;
@@ -2348,7 +2418,6 @@ a {
 
   font-weight: 800;
 }
-
 
 .result-names strong {
   color: #ff4b7d;
@@ -2370,7 +2439,6 @@ a {
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   margin: 0 auto;
@@ -2390,7 +2458,6 @@ a {
     );
 }
 
-
 .percentage-number {
   color: #222;
 
@@ -2398,7 +2465,6 @@ a {
 
   font-weight: 900;
 }
-
 
 .percentage-label {
   color: #888;
@@ -2410,7 +2476,6 @@ a {
   letter-spacing: 2px;
 }
 
-
 .result-card h3 {
   margin: 20px 0 7px;
 
@@ -2420,7 +2485,6 @@ a {
 
   text-align: center;
 }
-
 
 .result-description {
   margin: 0 auto 20px;
@@ -2434,7 +2498,6 @@ a {
   text-align: center;
 }
 
-
 .see-result-button {
   width: 100%;
 
@@ -2443,7 +2506,6 @@ a {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
@@ -2472,13 +2534,11 @@ a {
   padding: 35px 20px;
 }
 
-
 .prank-big-emoji {
   font-size: 65px;
 
   animation: prankPop 0.7s ease;
 }
-
 
 @keyframes prankPop {
 
@@ -2493,9 +2553,7 @@ a {
   100% {
     transform: scale(1);
   }
-
 }
-
 
 .prank-reveal-badge {
   display: inline-block;
@@ -2515,22 +2573,21 @@ a {
   font-weight: 900;
 }
 
-
 .prank-reveal-card h1 {
   margin-top: 17px;
 
   color: #222;
 
   font-size: 30px;
-}
 
+  line-height: 1.2;
+}
 
 .prank-reveal-card h1 span {
   display: block;
 
   color: #ff4b7d;
 }
-
 
 .prank-main-message {
   margin: 15px 0 5px;
@@ -2540,8 +2597,9 @@ a {
   font-size: 18px;
 
   font-weight: 900;
-}
 
+  line-height: 1.4;
+}
 
 .prank-description {
   color: #777;
@@ -2551,19 +2609,24 @@ a {
   line-height: 1.7;
 }
 
+.prank-description strong {
+  color: #ff2f75;
+
+  font-weight: 800;
+}
 
 .prank-names {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
 
   margin: 20px 0;
-}
 
+  flex-wrap: wrap;
+}
 
 .prank-name {
   padding: 9px 11px;
@@ -2579,8 +2642,9 @@ a {
   font-size: 10px;
 
   font-weight: 800;
-}
 
+  word-break: break-word;
+}
 
 .prank-heart {
   color: #ff4b7d;
@@ -2588,23 +2652,29 @@ a {
   font-size: 20px;
 }
 
-
 .fooled-message {
-  padding: 11px;
+  width: 100%;
 
-  border-radius: 10px;
+  margin-top: 18px;
 
-  background: #fff8df;
+  padding: 14px 16px;
 
-  border: 1px solid #ffe19a;
+  border-radius: 12px;
 
-  color: #8a6500;
+  background: #fff5f8;
 
-  font-size: 10px;
+  border: 1px solid rgba(255, 47, 117, 0.12);
 
-  font-weight: 800;
+  color: #555;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  text-align: center;
+
+  line-height: 1.5;
 }
-
 
 .try-again-button {
   width: 100%;
@@ -2626,7 +2696,6 @@ a {
   font-weight: 800;
 }
 
-
 .share-prank-text {
   margin: 14px 0 0;
 
@@ -2639,102 +2708,24 @@ a {
 
 
 /* =====================================================
-   LOVE PAGE FOOTER
-===================================================== */
-
-.love-page-footer {
-  position: fixed;
-
-  bottom: 12px;
-
-  left: 0;
-
-  width: 100%;
-
-  z-index: 10;
-
-  text-align: center;
-
-  color: rgba(255, 255, 255, 0.8);
-
-  font-size: 9px;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 600px) {
-
-  .love-page {
-    min-height: 100dvh;
-
-    padding: 25px 15px;
-
-    background-position: center;
-  }
-
-  .love-container {
-    width: 100%;
-
-    max-width: 430px;
-  }
-
-  .love-card {
-    padding: 25px 20px;
-
-    border-radius: 18px;
-  }
-
-  .love-top-icon {
-    width: 55px;
-    height: 55px;
-
-    font-size: 28px;
-  }
-
-  .love-card h1 {
-    font-size: 30px;
-  }
-
-  .love-description {
-    font-size: 12px;
-  }
-
-  .percentage-circle {
-    width: 145px;
-    height: 145px;
-  }
-
-  .percentage-number {
-    font-size: 34px;
-  }
-
-  .prank-reveal-card h1 {
-    font-size: 26px;
-  }
-
-  .prank-names {
-    flex-wrap: wrap;
-  }
-}
-/* =====================================================
    FRIEND TURN BOX
 ===================================================== */
 
 .friend-turn-box {
   width: 100%;
+
   margin-top: 28px;
+
   padding: 28px 22px;
 
   border-radius: 20px;
 
-  background: linear-gradient(
-    135deg,
-    #fff1f6,
-    #fff8fb
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #fff1f6,
+      #fff8fb
+    );
 
   border: 1px solid rgba(255, 55, 120, 0.15);
 
@@ -2744,11 +2735,6 @@ a {
     0 12px 30px rgba(255, 45, 110, 0.08);
 }
 
-
-/* =====================================================
-   FRIEND TURN EMOJI
-===================================================== */
-
 .friend-turn-emoji {
   width: 64px;
   height: 64px;
@@ -2756,6 +2742,7 @@ a {
   margin: 0 auto 12px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -2769,11 +2756,6 @@ a {
     0 8px 20px rgba(255, 45, 110, 0.12);
 }
 
-
-/* =====================================================
-   FRIEND TURN BADGE
-===================================================== */
-
 .friend-turn-badge {
   display: inline-flex;
 
@@ -2781,6 +2763,7 @@ a {
   justify-content: center;
 
   margin-bottom: 10px;
+
   padding: 7px 14px;
 
   border-radius: 50px;
@@ -2790,15 +2773,11 @@ a {
   color: #ff2f75;
 
   font-size: 11px;
+
   font-weight: 800;
 
   letter-spacing: 1px;
 }
-
-
-/* =====================================================
-   FRIEND TURN TITLE
-===================================================== */
 
 .friend-turn-box h2 {
   margin: 4px 0 10px;
@@ -2806,15 +2785,11 @@ a {
   color: #111827;
 
   font-size: 22px;
+
   font-weight: 800;
 
   line-height: 1.3;
 }
-
-
-/* =====================================================
-   FRIEND TURN DESCRIPTION
-===================================================== */
 
 .friend-turn-box p {
   max-width: 420px;
@@ -2824,16 +2799,13 @@ a {
   color: #6b7280;
 
   font-size: 14px;
+
   line-height: 1.6;
 }
 
-
-/* =====================================================
-   CREATE YOUR OWN PRANK BUTTON
-===================================================== */
-
 .create-own-prank-button {
   width: 100%;
+
   max-width: 360px;
 
   min-height: 54px;
@@ -2851,17 +2823,19 @@ a {
 
   border-radius: 14px;
 
-  background: linear-gradient(
-    135deg,
-    #ff2f75,
-    #ff4f91
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #ff2f75,
+      #ff4f91
+    );
 
   color: #ffffff;
 
   text-decoration: none;
 
   font-size: 15px;
+
   font-weight: 800;
 
   box-shadow:
@@ -2872,11 +2846,6 @@ a {
     box-shadow 0.2s ease;
 }
 
-
-/* =====================================================
-   BUTTON HOVER
-===================================================== */
-
 .create-own-prank-button:hover {
   transform: translateY(-2px);
 
@@ -2884,19 +2853,9 @@ a {
     0 14px 30px rgba(255, 47, 117, 0.32);
 }
 
-
-/* =====================================================
-   BUTTON ACTIVE
-===================================================== */
-
 .create-own-prank-button:active {
   transform: translateY(0);
 }
-
-
-/* =====================================================
-   BUTTON ARROW
-===================================================== */
 
 .create-own-prank-button .button-arrow {
   font-size: 20px;
@@ -2905,100 +2864,36 @@ a {
     transform 0.2s ease;
 }
 
-
 .create-own-prank-button:hover .button-arrow {
   transform: translateX(4px);
 }
 
 
 /* =====================================================
-   SUCCESS MESSAGE
-===================================================== */
-
-.fooled-message {
-  width: 100%;
-
-  margin-top: 18px;
-  padding: 14px 16px;
-
-  border-radius: 12px;
-
-  background: #fff5f8;
-
-  border: 1px solid rgba(
-    255,
-    47,
-    117,
-    0.12
-  );
-
-  color: #555;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  text-align: center;
-}
-
-
-/* =====================================================
-   PRANK DESCRIPTION
-===================================================== */
-
-.prank-description strong {
-  color: #ff2f75;
-  font-weight: 800;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 600px) {
-
-  .friend-turn-box {
-    padding: 24px 16px;
-
-    margin-top: 22px;
-  }
-
-  .friend-turn-box h2 {
-    font-size: 20px;
-  }
-
-  .friend-turn-box p {
-    font-size: 13px;
-  }
-
-  .create-own-prank-button {
-    min-height: 52px;
-
-    font-size: 14px;
-  }
-
-}
-/* =====================================================
    LOVE PAGE FOOTER
 ===================================================== */
 
 .love-page-footer {
+  position: relative;
+
+  z-index: 10;
+
   width: 100%;
 
-  padding: 22px 20px;
+  margin-top: auto;
+
+  padding: 16px 20px 8px;
 
   text-align: center;
 
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 
-  font-size: 13px;
+  font-size: 12px;
+
   line-height: 1.5;
+
+  flex-shrink: 0;
 }
-
-
-/* =====================================================
-   LINKEDIN LINK
-===================================================== */
 
 .linkedin-footer-link {
   display: inline-flex;
@@ -3022,7 +2917,6 @@ a {
     transform 0.2s ease;
 }
 
-
 .linkedin-footer-link:hover {
   color: #ffd1e1;
 
@@ -3030,7 +2924,6 @@ a {
 
   transform: translateY(-1px);
 }
-
 
 .linkedin-footer-link:focus-visible {
   outline: 2px solid #ffffff;
@@ -3042,19 +2935,398 @@ a {
 
 
 /* =====================================================
-   MOBILE FOOTER
+   LOVE PAGE — MOBILE
 ===================================================== */
 
 @media (max-width: 600px) {
 
-  .love-page-footer {
-    padding: 18px 15px;
+  .love-page {
+    min-height: 100dvh;
 
+    padding: 25px 15px 65px;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    background-position: center;
+  }
+
+  .love-container {
+    width: 100%;
+
+    max-width: 430px;
+
+    margin: auto;
+  }
+
+  .love-card {
+    width: 100%;
+
+    padding: 25px 20px;
+
+    border-radius: 18px;
+  }
+
+  .love-top-icon {
+    width: 55px;
+    height: 55px;
+
+    font-size: 28px;
+  }
+
+
+  /* ===============================================
+     LOVE CALCULATOR HEADING
+  =============================================== */
+
+  .love-calculator-title {
+    width: 100%;
+
+    min-height: 70px;
+
+    margin-bottom: 20px;
+
+    padding: 8px 42px;
+
+    border-radius: 32px;
+  }
+
+  .love-calculator-title .title-text {
+    flex-direction: column;
+
+    gap: 0;
+
+    font-size: 20px;
+
+    line-height: 1.05;
+
+    white-space: normal;
+  }
+
+  .love-calculator-title .title-heart {
+    width: 28px;
+    height: 28px;
+
+    font-size: 19px;
+  }
+
+  .love-calculator-title .title-heart-left {
+    left: 9px;
+  }
+
+  .love-calculator-title .title-heart-right {
+    right: 9px;
+  }
+
+
+  /* INPUT */
+
+  .love-input-group {
+    margin-bottom: 15px;
+  }
+
+  .love-input-group label {
+    font-size: 13px;
+  }
+
+  .love-input-wrapper {
+    height: 48px;
+
+    padding: 0 12px;
+
+    gap: 8px;
+  }
+
+  .love-input-wrapper input {
+    font-size: 14px;
+  }
+
+
+  /* MIDDLE HEART */
+
+  .love-middle-heart {
+    height: 23px;
+
+    margin: 2px 0;
+
+    font-size: 20px;
+  }
+
+
+  /* BUTTON */
+
+  .love-calculate-button {
+    min-height: 51px;
+
+    margin-top: 7px;
+
+    font-size: 14px;
+  }
+
+
+  /* SECURITY */
+
+  .love-security {
+    font-size: 9px;
+  }
+
+
+  /* LOADING */
+
+  .loading-card {
+    padding: 30px 18px;
+  }
+
+  .big-loading-heart {
+    font-size: 55px;
+  }
+
+  .loading-card h2 {
+    font-size: 24px;
+  }
+
+  .loading-names {
     font-size: 12px;
+  }
+
+
+  /* RESULT */
+
+  .percentage-circle {
+    width: 145px;
+    height: 145px;
+  }
+
+  .percentage-number {
+    font-size: 34px;
+  }
+
+
+  /* PRANK */
+
+  .prank-reveal-card {
+    padding: 30px 18px;
+  }
+
+  .prank-reveal-card h1 {
+    font-size: 26px;
+
+    line-height: 1.2;
+  }
+
+  .prank-main-message {
+    font-size: 16px;
+  }
+
+  .prank-description {
+    font-size: 12px;
+  }
+
+  .prank-names {
+    flex-wrap: wrap;
+  }
+
+
+  /* FRIEND TURN */
+
+  .friend-turn-box {
+    padding: 24px 16px;
+
+    margin-top: 22px;
+  }
+
+  .friend-turn-box h2 {
+    font-size: 20px;
+  }
+
+  .friend-turn-box p {
+    font-size: 13px;
+  }
+
+  .create-own-prank-button {
+    min-height: 52px;
+
+    font-size: 14px;
+  }
+
+
+  /* FOOTER */
+
+  .love-page-footer {
+    position: relative;
+
+    width: 100%;
+
+    padding: 16px 10px 2px;
+
+    font-size: 11px;
   }
 
   .linkedin-footer-link {
     margin-left: 3px;
   }
+}
 
+
+/* =====================================================
+   SMALL MOBILE — 380px
+===================================================== */
+
+@media (max-width: 380px) {
+
+  .love-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .love-card {
+    padding: 22px 16px;
+
+    border-radius: 17px;
+  }
+
+  .love-top-icon {
+    width: 52px;
+    height: 52px;
+
+    font-size: 26px;
+  }
+
+  .love-calculator-title {
+    min-height: 66px;
+
+    padding-left: 35px;
+    padding-right: 35px;
+
+    border-radius: 30px;
+  }
+
+  .love-calculator-title .title-text {
+    font-size: 18px;
+  }
+
+  .love-calculator-title .title-heart {
+    width: 25px;
+    height: 25px;
+
+    font-size: 17px;
+  }
+
+  .love-calculator-title .title-heart-left {
+    left: 7px;
+  }
+
+  .love-calculator-title .title-heart-right {
+    right: 7px;
+  }
+
+  .love-input-wrapper {
+    height: 46px;
+
+    padding: 0 10px;
+  }
+
+  .love-input-wrapper span {
+    font-size: 15px;
+  }
+
+  .love-input-wrapper input {
+    font-size: 13px;
+  }
+
+  .love-calculate-button {
+    min-height: 49px;
+
+    font-size: 13px;
+  }
+
+  .love-security {
+    font-size: 8px;
+  }
+
+  .love-page-footer {
+    font-size: 10px;
+  }
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE — 340px
+===================================================== */
+
+@media (max-width: 340px) {
+
+  .love-page {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .love-card {
+    padding: 20px 13px;
+  }
+
+  .love-calculator-title {
+    min-height: 63px;
+
+    padding-left: 31px;
+    padding-right: 31px;
+  }
+
+  .love-calculator-title .title-text {
+    font-size: 17px;
+  }
+
+  .love-calculator-title .title-heart {
+    width: 22px;
+    height: 22px;
+
+    font-size: 15px;
+  }
+
+  .love-calculator-title .title-heart-left {
+    left: 5px;
+  }
+
+  .love-calculator-title .title-heart-right {
+    right: 5px;
+  }
+
+  .love-input-wrapper {
+    height: 44px;
+  }
+
+  .love-input-wrapper input {
+    font-size: 12px;
+  }
+
+  .love-calculate-button {
+    min-height: 47px;
+
+    font-size: 12px;
+  }
+
+  .prank-reveal-card h1 {
+    font-size: 23px;
+  }
+
+  .friend-turn-box {
+    padding: 21px 13px;
+  }
+
+  .friend-turn-box h2 {
+    font-size: 18px;
+  }
+
+  .friend-turn-box p {
+    font-size: 12px;
+  }
+
+  .create-own-prank-button {
+    min-height: 49px;
+
+    padding: 0 12px;
+
+    font-size: 12px;
+  }
 }
