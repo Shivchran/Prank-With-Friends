@@ -566,12 +566,7 @@ function PrankPage() {
               </button>
 
             </form>
-
-            <div className="love-security">
-              🔒 Just for fun • Your information is private
-            </div>
-
-          </section>
+            </section>
 
         </main>
 
