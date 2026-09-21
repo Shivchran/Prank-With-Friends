@@ -190,7 +190,9 @@ function Home() {
   return (
     <div className="app">
 
-      {/* NAVBAR */}
+      {/* =================================================
+          NAVBAR
+      ================================================= */}
 
       <nav className="navbar">
 
@@ -211,15 +213,20 @@ function Home() {
 
       </nav>
 
-      {/* HERO */}
+      {/* =================================================
+          HERO
+      ================================================= */}
 
       <main className="hero">
 
+        {/* Existing background/overlay structure preserved */}
         <div className="hero-overlay"></div>
 
         <div className="hero-content">
 
-          {/* LEFT SIDE */}
+          {/* =================================================
+              LEFT SIDE
+          ================================================= */}
 
           <section className="hero-text">
 
@@ -246,6 +253,7 @@ function Home() {
                 <span>🔗</span>
 
                 <div>
+
                   <strong>
                     Personal Link
                   </strong>
@@ -253,6 +261,7 @@ function Home() {
                   <small>
                     Create your own prank link
                   </small>
+
                 </div>
 
               </div>
@@ -262,6 +271,7 @@ function Home() {
                 <span>😂</span>
 
                 <div>
+
                   <strong>
                     Funny Prank
                   </strong>
@@ -269,6 +279,7 @@ function Home() {
                   <small>
                     Give your friends a surprise
                   </small>
+
                 </div>
 
               </div>
@@ -278,6 +289,7 @@ function Home() {
                 <span>📊</span>
 
                 <div>
+
                   <strong>
                     View Results
                   </strong>
@@ -285,6 +297,7 @@ function Home() {
                   <small>
                     See who tried your prank
                   </small>
+
                 </div>
 
               </div>
@@ -293,7 +306,9 @@ function Home() {
 
           </section>
 
-          {/* SIGNUP CARD */}
+          {/* =================================================
+              SIGNUP CARD
+          ================================================= */}
 
           <section className="signup-card">
 
@@ -313,7 +328,9 @@ function Home() {
 
             </div>
 
-            {/* SIGNUP FORM */}
+            {/* =================================================
+                SIGNUP FORM
+            ================================================= */}
 
             <form
               className="signup-form"
@@ -476,16 +493,13 @@ function Home() {
                   className="create-button"
                   disabled={loading}
                 >
-
                   {loading
                     ? "Creating..."
-                    : "Create My Prank Link"
-                  }
+                    : "Create My Prank Link"}
 
                   {!loading && (
                     <span>→</span>
                   )}
-
                 </button>
               )}
 
@@ -507,7 +521,9 @@ function Home() {
 
       </main>
 
-      {/* FOOTER */}
+      {/* =================================================
+          FOOTER
+      ================================================= */}
 
       <footer className="footer">
 
@@ -520,7 +536,7 @@ function Home() {
           Developed by{" "}
 
           <a
-            href="https://www.linkedin.com/in/sachin-upmanyu-web-devleloper/"
+            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer/"
             target="_blank"
             rel="noopener noreferrer"
           >
