@@ -24,7 +24,7 @@ router.get("/check/:slug", async (req, res) => {
 
     const owner = await User.findOne({
       slug,
-    }).select("name slug");
+    }).select("name slug musicEnabled");
 
     if (!owner) {
       return res.status(404).json({
@@ -37,12 +37,15 @@ router.get("/check/:slug", async (req, res) => {
     return res.json({
       success: true,
       valid: true,
+
       owner: {
         name: owner.name,
         slug: owner.slug,
+
+        // Background music setting
+        musicEnabled: owner.musicEnabled ?? false,
       },
     });
-
   } catch (error) {
     console.error(
       "Check prank link error:",
@@ -125,7 +128,6 @@ router.post("/", async (req, res) => {
         crushName: submission.crushName,
       },
     });
-
   } catch (error) {
     console.error(
       "Submission error:",

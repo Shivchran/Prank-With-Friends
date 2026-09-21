@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* =====================================================
    API URL
@@ -29,6 +29,16 @@ function PrankPage() {
   const [submitError, setSubmitError] = useState("");
 
   const [ownerName, setOwnerName] = useState("");
+
+  // =================================================
+  // MUSIC
+  // =================================================
+
+  const audioRef = useRef(null);
+
+  const [musicEnabled, setMusicEnabled] = useState(false);
+  const [musicBlocked, setMusicBlocked] = useState(false);
+  const [musicStarted, setMusicStarted] = useState(false);
 
   // =================================================
   // GET SLUG
@@ -73,6 +83,12 @@ function PrankPage() {
           data.owner?.name || "your friend"
         );
 
+        // Get owner's music setting
+        const ownerMusicEnabled =
+          data.owner?.musicEnabled === true;
+
+        setMusicEnabled(ownerMusicEnabled);
+
         // Valid personal prank link
         setStage("form");
       } catch (error) {
@@ -87,6 +103,64 @@ function PrankPage() {
 
     verifyPrankLink();
   }, []);
+
+  // =================================================
+  // CREATE AUDIO
+  // =================================================
+
+  useEffect(() => {
+    if (!musicEnabled) {
+      return;
+    }
+
+    const audio = new Audio("/music/romantic.mp3");
+
+    audio.loop = true;
+    audio.volume = 0.35;
+
+    audioRef.current = audio;
+
+    // Try autoplay
+    audio
+      .play()
+      .then(() => {
+        setMusicStarted(true);
+        setMusicBlocked(false);
+      })
+      .catch(() => {
+        // Browser blocked autoplay
+        setMusicBlocked(true);
+        setMusicStarted(false);
+      });
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+      audioRef.current = null;
+    };
+  }, [musicEnabled]);
+
+  // =================================================
+  // START MUSIC AFTER USER INTERACTION
+  // =================================================
+
+  async function startMusic() {
+    if (!audioRef.current) {
+      return;
+    }
+
+    try {
+      await audioRef.current.play();
+
+      setMusicStarted(true);
+      setMusicBlocked(false);
+    } catch (error) {
+      console.error(
+        "Unable to play music:",
+        error
+      );
+    }
+  }
 
   // =================================================
   // SAVE SUBMISSION
@@ -295,6 +369,16 @@ function PrankPage() {
       return;
     }
 
+    // Start music from user interaction if
+    // browser blocked autoplay
+    if (
+      musicEnabled &&
+      musicBlocked &&
+      !musicStarted
+    ) {
+      await startMusic();
+    }
+
     const saved =
       await saveSubmission();
 
@@ -303,6 +387,30 @@ function PrankPage() {
     }
 
     startCalculation();
+  }
+
+  // =================================================
+  // MUSIC BUTTON
+  // =================================================
+
+  function renderMusicButton() {
+    if (
+      !musicEnabled ||
+      !musicBlocked ||
+      musicStarted
+    ) {
+      return null;
+    }
+
+    return (
+      <button
+        type="button"
+        className="love-music-button"
+        onClick={startMusic}
+      >
+        🎵 Tap to Play Music
+      </button>
+    );
   }
 
   // =================================================
@@ -344,7 +452,7 @@ function PrankPage() {
           Made with ❤️ by{" "}
 
           <a
-            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer"
+            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer/"
             target="_blank"
             rel="noopener noreferrer"
             className="linkedin-footer-link"
@@ -418,7 +526,7 @@ function PrankPage() {
           Made with ❤️ by{" "}
 
           <a
-            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer"
+            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer/"
             target="_blank"
             rel="noopener noreferrer"
             className="linkedin-footer-link"
@@ -449,21 +557,26 @@ function PrankPage() {
             <div className="love-top-icon">
               ❤️
             </div>
+
             <div className="love-badge love-calculator-title">
 
-            <span className="title-heart title-heart-left">
-             💕
-           </span>
+              <span className="title-heart title-heart-left">
+                💕
+              </span>
 
-           <span className="title-text">
-           <span>LOVE</span>
-           <span>CALCULATOR</span>
-           </span>
+              <span className="title-text">
+                <span>LOVE</span>
+                <span>CALCULATOR</span>
+              </span>
 
-           <span className="title-heart title-heart-right">
-            💕
-           </span>
-           </div>
+              <span className="title-heart title-heart-right">
+                💕
+              </span>
+
+            </div>
+
+            {renderMusicButton()}
+
             <form
               className="love-form"
               onSubmit={calculateLove}
@@ -566,7 +679,8 @@ function PrankPage() {
               </button>
 
             </form>
-            </section>
+
+          </section>
 
         </main>
 
@@ -575,7 +689,7 @@ function PrankPage() {
           Made with ❤️ by{" "}
 
           <a
-            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer"
+            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer/"
             target="_blank"
             rel="noopener noreferrer"
             className="linkedin-footer-link"
@@ -658,7 +772,7 @@ function PrankPage() {
           Made with ❤️ by{" "}
 
           <a
-            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer"
+            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer/"
             target="_blank"
             rel="noopener noreferrer"
             className="linkedin-footer-link"
@@ -789,7 +903,7 @@ function PrankPage() {
           Made with ❤️ by{" "}
 
           <a
-            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer"
+            href="https://www.linkedin.com/in/sachin-upmanyu-web-developer/"
             target="_blank"
             rel="noopener noreferrer"
             className="linkedin-footer-link"

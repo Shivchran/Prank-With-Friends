@@ -5328,3 +5328,325 @@ input:focus-visible {
     min-height: 52px;
   }
 }
+/* =====================================================
+   ROMANTIC MUSIC BUTTON
+===================================================== */
+
+.love-music-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin: 14px auto 20px;
+  padding: 12px 24px;
+
+  min-width: 190px;
+
+  border: 1px solid rgba(255, 105, 160, 0.45);
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 225, 238, 0.75)
+    );
+
+  color: #d6336c;
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  box-shadow:
+    0 8px 25px rgba(214, 51, 108, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Soft glowing border */
+.love-music-button::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 105, 160, 0.55),
+    rgba(255, 182, 193, 0.15),
+    rgba(214, 51, 108, 0.45)
+  );
+
+  z-index: -1;
+
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/* Hover */
+.love-music-button:hover {
+  transform: translateY(-3px) scale(1.02);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 240, 246, 0.95),
+      rgba(255, 215, 232, 0.9)
+    );
+
+  box-shadow:
+    0 12px 32px rgba(214, 51, 108, 0.25),
+    0 0 18px rgba(255, 105, 160, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.love-music-button:hover::before {
+  opacity: 1;
+}
+
+/* Click */
+.love-music-button:active {
+  transform: translateY(-1px) scale(0.98);
+
+  box-shadow:
+    0 5px 15px rgba(214, 51, 108, 0.18);
+}
+
+/* Focus */
+.love-music-button:focus-visible {
+  outline: 3px solid rgba(255, 105, 160, 0.25);
+  outline-offset: 3px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .love-music-button {
+    width: 100%;
+    max-width: 230px;
+    padding: 12px 20px;
+  }
+}
+/* =====================================================
+   BACKGROUND MUSIC TOGGLE
+===================================================== */
+
+.music-toggle {
+  position: relative;
+
+  min-width: 100px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 6px 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    all 0.3s ease;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+/* OFF */
+
+.music-toggle-off {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245, 245, 250, 0.95),
+      rgba(225, 225, 235, 0.9)
+    );
+
+  color: #666;
+}
+
+/* ON */
+
+.music-toggle-on {
+  background:
+    linear-gradient(
+      135deg,
+      #ff5f9e,
+      #d63384
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 8px 25px rgba(214, 51, 132, 0.3),
+    0 0 18px rgba(255, 95, 158, 0.2);
+}
+
+/* Circle */
+
+.music-toggle-circle {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  font-size: 16px;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 0.3s ease;
+}
+
+/* ON circle */
+
+.music-toggle-on .music-toggle-circle {
+  transform: translateX(2px);
+}
+
+/* Hover */
+
+.music-toggle:hover {
+  transform: translateY(-2px);
+}
+
+/* Click */
+
+.music-toggle:active {
+  transform: scale(0.96);
+}
+
+/* Disabled */
+
+.music-toggle:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+/* =====================================================
+   DELETE ALL BUTTON
+===================================================== */
+
+.delete-all-button {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 42px;
+
+  padding: 9px 17px;
+
+  border: 1px solid rgba(220, 53, 69, 0.25);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 241, 244, 0.9)
+    );
+
+  color: #dc3545;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 18px rgba(220, 53, 69, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  transition:
+    all 0.25s ease;
+
+  overflow: hidden;
+}
+
+/* Hover */
+
+.delete-all-button:hover {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff6b7a,
+      #dc3545
+    );
+
+  border-color: transparent;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(220, 53, 69, 0.25);
+}
+
+/* Click */
+
+.delete-all-button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Disabled */
+
+.delete-all-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .music-toggle {
+    min-width: 92px;
+    height: 44px;
+  }
+
+  .music-toggle-circle {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .delete-all-button {
+    min-height: 40px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}

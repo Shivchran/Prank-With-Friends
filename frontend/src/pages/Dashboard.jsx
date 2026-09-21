@@ -29,6 +29,13 @@ function Dashboard() {
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Music states
+  const [musicUpdating, setMusicUpdating] = useState(false);
+  const [musicMessage, setMusicMessage] = useState("");
+
+  // Delete states
+  const [deletingAll, setDeletingAll] = useState(false);
+
   /* =====================================================
      LOAD DASHBOARD
   ===================================================== */
@@ -65,7 +72,12 @@ function Dashboard() {
           return;
         }
 
-        setUser(data.user);
+        setUser({
+          ...data.user,
+
+          // Default OFF if field is not present
+          musicEnabled: data.user.musicEnabled ?? false,
+        });
 
         setStats(
           data.stats || {
@@ -75,23 +87,16 @@ function Dashboard() {
           }
         );
 
-        setSubmissions(
-          data.submissions || []
-        );
+        setSubmissions(data.submissions || []);
 
         localStorage.setItem(
           "user",
           JSON.stringify(data.user)
         );
-
       } catch (error) {
-        console.error(
-          "Dashboard error:",
-          error
-        );
+        console.error("Dashboard error:", error);
 
         navigate("/login");
-
       } finally {
         setLoading(false);
       }
@@ -104,7 +109,7 @@ function Dashboard() {
      COPY PRANK LINK
   ===================================================== */
 
-  function copyPrankLink() {
+  async function copyPrankLink() {
     if (!user) {
       return;
     }
@@ -112,15 +117,181 @@ function Dashboard() {
     const prankLink =
       `${window.location.origin}/${user.slug}`;
 
-    navigator.clipboard.writeText(
-      prankLink
+    try {
+      await navigator.clipboard.writeText(prankLink);
+
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    } catch (error) {
+      console.error("Copy failed:", error);
+    }
+  }
+
+  /* =====================================================
+     MUSIC ON / OFF
+  ===================================================== */
+
+  async function toggleMusic() {
+    if (!user || musicUpdating) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    const newMusicState = !user.musicEnabled;
+
+    setMusicUpdating(true);
+    setMusicMessage("");
+
+    try {
+      const response = await fetch(
+        `${API_URL}/api/dashboard/music`,
+        {
+          method: "PUT",
+
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            musicEnabled: newMusicState,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message ||
+            "Unable to update music setting."
+        );
+      }
+
+      setUser((previousUser) => ({
+        ...previousUser,
+        musicEnabled: data.musicEnabled,
+      }));
+
+      const storedUser =
+        JSON.parse(
+          localStorage.getItem("user") || "{}"
+        );
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...storedUser,
+          musicEnabled: data.musicEnabled,
+        })
+      );
+
+      setMusicMessage(
+        data.musicEnabled
+          ? "Background music is ON 🎵"
+          : "Background music is OFF 🔇"
+      );
+
+      setTimeout(() => {
+        setMusicMessage("");
+      }, 2500);
+    } catch (error) {
+      console.error(
+        "Music setting error:",
+        error
+      );
+
+      setMusicMessage(
+        "Unable to update music setting."
+      );
+    } finally {
+      setMusicUpdating(false);
+    }
+  }
+
+  /* =====================================================
+     DELETE ALL SUBMISSIONS
+  ===================================================== */
+
+  async function deleteAllSubmissions() {
+    if (
+      submissions.length === 0 ||
+      deletingAll
+    ) {
+      return;
+    }
+
+    const confirmed = window.confirm(
+      "Are you sure you want to delete all prank submissions? This action cannot be undone."
     );
 
-    setCopied(true);
+    if (!confirmed) {
+      return;
+    }
 
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    try {
+      setDeletingAll(true);
+
+      const response = await fetch(
+        `${API_URL}/api/dashboard/submissions`,
+        {
+          method: "DELETE",
+
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message ||
+            "Unable to delete submissions."
+        );
+      }
+
+      // Clear submissions from UI
+      setSubmissions([]);
+
+      // Reset statistics
+      setStats({
+        totalSubmissions: 0,
+        prankAttempts: 0,
+        loveCalculations: 0,
+      });
+
+    } catch (error) {
+      console.error(
+        "Delete all submissions error:",
+        error
+      );
+
+      window.alert(
+        error.message ||
+          "Unable to delete submissions."
+      );
+    } finally {
+      setDeletingAll(false);
+    }
   }
 
   /* =====================================================
@@ -159,9 +330,7 @@ function Dashboard() {
   if (loading) {
     return (
       <div className="dashboard-loading">
-        <h2>
-          Loading Dashboard...
-        </h2>
+        <h2>Loading Dashboard...</h2>
       </div>
     );
   }
@@ -301,6 +470,73 @@ function Dashboard() {
         </section>
 
         {/* =========================
+            BACKGROUND MUSIC
+        ========================== */}
+
+        <section className="music-control-card">
+
+          <div className="music-control-info">
+
+            <div className="music-control-icon">
+              {user.musicEnabled
+                ? "🎵"
+                : "🔇"}
+            </div>
+
+            <div>
+
+              <span>
+                BACKGROUND MUSIC
+              </span>
+
+              <h2>
+                Romantic Music
+              </h2>
+
+              <p>
+                Turn this ON to play background
+                music on your personal prank link.
+              </p>
+
+            </div>
+
+          </div>
+
+          <button
+            type="button"
+            className={`music-toggle ${
+              user.musicEnabled
+                ? "music-toggle-on"
+                : "music-toggle-off"
+            }`}
+            onClick={toggleMusic}
+            disabled={musicUpdating}
+            aria-pressed={user.musicEnabled}
+          >
+            <span className="music-toggle-circle">
+              {user.musicEnabled
+                ? "🎵"
+                : "🔇"}
+            </span>
+
+            <span>
+              {musicUpdating
+                ? "Saving..."
+                : user.musicEnabled
+                ? "ON"
+                : "OFF"}
+            </span>
+          </button>
+
+          {musicMessage && (
+            <div className="music-message">
+              {musicMessage}
+            </div>
+          )}
+
+        </section>
+
+        {/* =========================
             STATISTICS
         ========================== */}
 
@@ -387,6 +623,19 @@ function Dashboard() {
               </h2>
 
             </div>
+
+            {submissions.length > 0 && (
+              <button
+                type="button"
+                className="delete-all-button"
+                onClick={deleteAllSubmissions}
+                disabled={deletingAll}
+              >
+                {deletingAll
+                  ? "Deleting..."
+                  : "🗑️ Delete All"}
+              </button>
+            )}
 
           </div>
 

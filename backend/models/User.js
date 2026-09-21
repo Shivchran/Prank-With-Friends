@@ -30,6 +30,12 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+
+    // Background music setting
+    musicEnabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
